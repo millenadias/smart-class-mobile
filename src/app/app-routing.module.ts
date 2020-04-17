@@ -7,7 +7,15 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },  {
+    path: 'cadastro-aula',
+    loadChildren: () => import('./cadastro-aula/cadastro-aula.module').then( m => m.CadastroAulaPageModule)
   },
+  {
+    path: 'editar-aula',
+    loadChildren: () => import('./editar-aula/editar-aula.module').then( m => m.EditarAulaPageModule)
+  },
+
 ];
 
 @NgModule({
