@@ -5,12 +5,25 @@
 </ion-header>
 
 <ion-content>
-  <form style="text-align: center;">
-    <span>Login:</span>
-    <input type="text" placeholder="teste millena"> <br>
-    <span>Senha:</span>
-    <input type="password" placeholder="teste millena">
-
+  
+  <form (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-img width="40" height="40" style="padding: 10%;" src="..\..\assets\logo.jpg"></ion-img>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label>Login</ion-label> -->
+      <ion-input type="text" [(ngModel)]="usuario.dsLogin" placeholder="Login" name="login"></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label>Senha</ion-label> -->
+      <ion-input type="password" [(ngModel)]="usuario.dsSenha" placeholder="Senha" name="senha"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block style="text-align: center;">Entrar</button>
+    <div *ngIf="loginErrado">
+      
+      <ion-label style="color: red;">Login inválido</ion-label>
+    </div>
+    
   </form>
-<!-- <app-form-login></app-form-login> -->
+  
 </ion-content>

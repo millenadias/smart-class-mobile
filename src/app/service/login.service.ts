@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Usuario } from '../model/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +11,44 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  public Teste() {
-    return this.teste().toPromise()
-    .then((data) => {
-      console.log("teste millena");
-      console.log(data['acesso']);
-      
-    })
+  public verificarAcesso(login: string, senha: string): Promise<any> {
+    return this._verificarAcesso(login, senha).toPromise()
+      .then((data) => {
+        console.log('entrou no retorno', data);
+
+        return data;
+      })
   }
-  private teste(){
+  private _verificarAcesso(login: string, senha: string) {
+
     return this.http.get(`https://localhost:44354/usuario/validarAcesso`,
-    {
-      params: {
-        "pDsLogin": "millena.dias",
-        "pDsSenha": "testeSenha"
-      }
-    }).pipe(catchError(e => of(e)))
+      {
+        params: {
+          "pDsLogin": login,
+          "pDsSenha": senha
+        }
+      }).pipe(catchError(e => of(e)))
+  }
+
+  public getDadosUsuario(login: string, senha: string): Promise<any> {
+    return this._getDadosUsuario(login, senha).toPromise()
+      .then((data) => {
+        let user: Usuario = new Usuario();
+
+        if (data)
+          Object.assign(user, data)    
+
+        return user;
+      })
+  }
+
+  private _getDadosUsuario(login: string, senha: string) {
+    return this.http.get(`https://localhost:44354/usuario/GetPorLoginSenha`,
+      {
+        params: {
+          "pDsLogin": login,
+          "pDsSenha": senha
+        }
+      }).pipe(catchError(e => of(e)))
   }
 }
