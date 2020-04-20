@@ -1,9 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>aulas</ion-title>
+    <ion-title>Minhas Aulas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-</ion-content>
+  <ion-list padding>
+  	<ion-item *ngFor="let item of aulas">
+      <ion-grid style="background-color: grey;">
+        {{ item.dtAula}}
+      </ion-grid> <br><p></p>
+      {{item.dsSala}}</ion-item>
+  </ion-list>
+</ion-content>  

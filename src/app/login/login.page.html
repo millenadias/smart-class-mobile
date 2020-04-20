@@ -18,7 +18,7 @@
       <!-- <ion-label>Senha</ion-label> -->
       <ion-input type="password" [(ngModel)]="usuario.dsSenha" placeholder="Senha" name="senha"></ion-input>
     </ion-item>
-    <button ion-button type="submit" block style="text-align: center;">Entrar</button>
+    <ion-button expand="block" (click)="onSubmit()">Cadastrar</ion-button>
     <div *ngIf="loginErrado">
       
       <ion-label style="color: red;">Login inválido</ion-label>
