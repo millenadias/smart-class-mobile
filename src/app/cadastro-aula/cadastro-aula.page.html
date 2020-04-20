@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro de Aula</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        Aula
+      </ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Disciplina</ion-label>
+      <ion-select interface="action-sheet" placeholder="Selecione um item">
+        <ion-select-option
+          >Desenvolvimento Mobile e Internet das Coisas</ion-select-option
+        >
+        <ion-select-option
+          >Ambientes e Modelos Organizacionais na Era Digital</ion-select-option
+        >
+        <ion-select-option
+          >Arquitetura de Sistemas e Soluções de Tecnologia da
+          Informação</ion-select-option
+        >
+        <ion-select-option>Projeto Interdisciplinar</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data Inicial</ion-label>
+      <ion-datetime
+        displayFormat="DD MMM YYYY, HH:mm"
+        placeholder="Selecione a data"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data Final</ion-label>
+      <ion-datetime
+        displayFormat="DD MMM YYYY, HH:mm"
+        placeholder="Selecione a data"
+      ></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-label>Semestre</ion-label>
+    <ion-select placeholder="Selecione o semestre">
+      <ion-select-option>01/2018</ion-select-option>
+      <ion-select-option>02/2018</ion-select-option>
+      <ion-select-option>01/2019</ion-select-option>
+      <ion-select-option>02/2019</ion-select-option>
+      <ion-select-option>01/2020</ion-select-option>
+      <ion-select-option>02/2020</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label type="number" inputmode="numeric" maxlength="30" position="fixed"
+      >Quantidade máxima de aluno</ion-label
+    >
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-list-header>
+    <ion-label>
+      Preferências
+    </ion-label>
+  </ion-list-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-checkbox color="danger"></ion-checkbox>
+      <ion-label>Ar condicionado</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox color="danger"></ion-checkbox>
+      <ion-label>Computadores</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox color="danger"></ion-checkbox>
+      <ion-label>Microscópio</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox color="danger"></ion-checkbox>
+      <ion-label>Projetor</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block">Cadastrar</ion-button>
+</ion-content>

@@ -5,25 +5,37 @@
 </ion-header>
 
 <ion-content>
-  
   <form (ngSubmit)="onSubmit()">
     <ion-item>
-      <ion-img width="40" height="40" style="padding: 10%;" src="..\..\assets\logo.jpg"></ion-img>
+      <ion-img
+        width="40"
+        height="40"
+        style="padding: 10%;"
+        src="..\..\assets\logo.jpg"
+      ></ion-img>
     </ion-item>
     <ion-item>
       <!-- <ion-label>Login</ion-label> -->
-      <ion-input type="text" [(ngModel)]="usuario.dsLogin" placeholder="Login" name="login"></ion-input>
+      <ion-input
+        type="text"
+        [(ngModel)]="usuario.dsLogin"
+        placeholder="Login"
+        name="login"
+      ></ion-input>
     </ion-item>
     <ion-item>
       <!-- <ion-label>Senha</ion-label> -->
-      <ion-input type="password" [(ngModel)]="usuario.dsSenha" placeholder="Senha" name="senha"></ion-input>
+      <ion-input
+        type="password"
+        [(ngModel)]="usuario.dsSenha"
+        placeholder="Senha"
+        name="senha"
+      ></ion-input>
     </ion-item>
     <ion-button expand="block" (click)="onSubmit()">Cadastrar</ion-button>
+
     <div *ngIf="loginErrado">
-      
       <ion-label style="color: red;">Login inválido</ion-label>
     </div>
-    
   </form>
-  
 </ion-content>
