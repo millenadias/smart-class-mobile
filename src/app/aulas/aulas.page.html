@@ -4,6 +4,7 @@
     <ion-item *ngFor="let item of aulas">
       <ion-grid>
         {{ item.dtAula}}
+<<<<<<< HEAD
       </ion-grid>
       <br />
       <p></p>
@@ -95,3 +96,13 @@
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+=======
+      </ion-grid> <br><p></p>
+      {{item.dsSala}}</ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="cadastrarAula()">Cadastrar</ion-button>
+  <ion-button expand="block" (click)="editarAula()">Editar</ion-button>
+
+</ion-content>  
+>>>>>>> 7ab500eec16ce57c58172fd6ccfccff2a017f69b

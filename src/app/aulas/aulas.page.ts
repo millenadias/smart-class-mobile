@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Aula } from '../model/aula';
 import { AulaService } from '../service/aula.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-aulas',
@@ -10,7 +11,7 @@ import { AulaService } from '../service/aula.service';
 export class AulasPage implements OnInit {
 
   aulas: Aula[] = [];
-  constructor(private aulaService: AulaService) { }
+  constructor(private aulaService: AulaService, private navCtrl: NavController) { }
 
   ngOnInit() {
 
@@ -34,4 +35,14 @@ export class AulasPage implements OnInit {
     
   }
 
+  cadastrarAula() {
+    this.navCtrl.navigateRoot('aula');
+  }
+
+  editarAula() {
+    /*this.aulaService.getAula(1).then(result => {
+
+    })*/
+    this.navCtrl.navigateRoot('aula' + '?cdAula=10');
+  }
 }

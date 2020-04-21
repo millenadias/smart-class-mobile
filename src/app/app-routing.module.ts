@@ -14,17 +14,10 @@ const routes: Routes = [
       import("./login/login.module").then((m) => m.LoginPageModule),
   },
   {
-    path: "cadastro-aula",
+    path: "aula",
     loadChildren: () =>
-      import("./cadastro-aula/cadastro-aula.module").then(
-        (m) => m.CadastroAulaPageModule
-      ),
-  },
-  {
-    path: "editar-aula",
-    loadChildren: () =>
-      import("./editar-aula/editar-aula.module").then(
-        (m) => m.EditarAulaPageModule
+      import("./aula/aula.module").then(
+        (m) => m.AulaPageModule
       ),
   },
   {
