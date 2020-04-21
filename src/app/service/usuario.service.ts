@@ -7,15 +7,15 @@ import { Usuario } from '../model/usuario';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class UsuarioService {
+
+  public dadosUsuarioLogado: Usuario = new Usuario();
 
   constructor(private http: HttpClient) { }
 
   public verificarAcesso(login: string, senha: string): Promise<any> {
     return this._verificarAcesso(login, senha).toPromise()
       .then((data) => {
-        console.log('entrou no retorno', data);
-
         return data;
       })
   }
@@ -37,7 +37,8 @@ export class LoginService {
 
         if (data)
           Object.assign(user, data)    
-
+        
+         this.dadosUsuarioLogado = user;
         return user;
       })
   }

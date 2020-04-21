@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../service/login.service';
+import { UsuarioService } from '../service/usuario.service';
 import { Usuario } from '../model/usuario';
 import { NavController } from '@ionic/angular';
 import { FormControl, Validators } from '@angular/forms';
@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   loginErrado: boolean = false;
 
   usuario: Usuario = new Usuario();
-  constructor(private loginService: LoginService, private navCtrl: NavController) {
+  constructor(private usuarioService: UsuarioService, private navCtrl: NavController) {
     
    }
 
@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
   }
 
   onSubmit(){    
-    this.loginService.getDadosUsuario(this.usuario.dsLogin, this.usuario.dsSenha).then((result: Usuario) => {
+    this.usuarioService.getDadosUsuario(this.usuario.dsLogin, this.usuario.dsSenha).then((result: Usuario) => {
       
       if (result.cdUsuario && result.cdUsuario > 0)
         this.navCtrl.navigateRoot('aulas');

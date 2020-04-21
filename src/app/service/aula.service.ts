@@ -37,4 +37,40 @@ export class AulaService {
         }
       }).pipe(catchError(e => of(e)))
   }
+
+  public cadastrarAula(aula: Aula) {
+   
+    return this._cadastrarAula(aula).toPromise()
+      .then((data: any) => {
+        return data;
+      })
+      .catch((e) => { console.log(e); return { body: e.message, status: e.statusText } });
+  }
+
+  private _cadastrarAula(aula: Aula) {
+    return this.http.post(`https://localhost:44354/aula/cadastrarAula`,
+      JSON.stringify(aula)
+    ).pipe(catchError(e => of(e)));
+  }
+
+  public getAula(cdAula: number) {
+    return this._getAula(cdAula).toPromise()
+      .then((data) => {
+        let aula = new Aula();
+
+        if (data) 
+          aula = data;
+          
+        return aula;
+      })
+  }
+
+  private _getAula(cdAula: number) {
+    return this.http.get(`https://localhost:44354/aula/getAula`,
+    {
+      params: {
+        "CdAula": cdAula.toString()
+      }
+    }).pipe(catchError(e => of(e)))
+  }
 }
