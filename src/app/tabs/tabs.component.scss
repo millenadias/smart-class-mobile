@@ -1,0 +1,7 @@
+ion-tab-button.tab-selected {
+  ion-icon,
+  ion-label {
+    color: var(--ion-cor-padrao) !important;
+    --ion-color-base: var(--ion-color-secondary) !important;
+  }
+}

@@ -1,36 +1,25 @@
-.labelAumentada {
-  padding-top: 9%;
-  padding-bottom: 6%;
-  font-size: 1.5em;
-}
-
 .tituloNegrito {
   font-weight: bold;
 }
 .bordaArredondada {
   background-color: var(--ion-cor-padrao2);
   border-radius: 20px;
-  margin: 3%;
+  margin: 1%;
 }
 .textoAlinhado {
   text-align: center;
 }
 
-.iconeColorido {
-  color: var(--ion-cor-padrao);
-}
-
 ion-icon {
-  color: var(--ion-cor-padrao);
+  background: #949494;
+  color: #ffffff;
+  margin-left: 9em;
 }
 .gridMargem {
   margin-left: 1.5em;
-}
-.iconEditar {
-  color: #464646;
-  margin-left: 1.5em;
+  margin-top: 1.5em;
 }
 
-ion-button {
-  background: var(--ion-cor-padrao);
+h5 {
+  color: #494949;
 }
