@@ -16,7 +16,7 @@
       <ion-label>Disciplina</ion-label>
       <ion-select
         interface="action-sheet"
-        [(ngModel)]="aula.cdDisciplina"
+        [(ngModel)]="aula.CdDisciplina"
         placeholder="Selecione um item"
       >
         <ion-select-option
@@ -29,10 +29,30 @@
       </ion-select>
     </ion-item>
     <ion-item>
+      <ion-label>Turma</ion-label>
+      <ion-select
+        interface="action-sheet"
+        [(ngModel)]="aula.CdTurma"
+        placeholder="Selecione um item"
+      >
+        <ion-select-option *ngFor="let item of turmas" [value]="item.CdTurma">
+          {{item.DsTurma}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
       <ion-label>Data Inicial</ion-label>
       <ion-datetime
         displayFormat="DD MMM YYYY, HH:mm"
-        [(ngModel)]="aula.dtAula"
+        [(ngModel)]="aula.DtAula"
+        placeholder="Selecione a data"
+      >
+      </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data Final</ion-label>
+      <ion-datetime
+        displayFormat="DD MMM YYYY, HH:mm"
         placeholder="Selecione a data"
       >
       </ion-datetime>
@@ -43,7 +63,7 @@
     <ion-label>Semestre</ion-label>
     <ion-input
       type="text"
-      [(ngModel)]="aula.dsSemestre"
+      [(ngModel)]="aula.DsSemestre"
       placeholder=""
       max-length="100"
     ></ion-input>
@@ -53,14 +73,14 @@
     <ion-label type="number" inputmode="numeric" maxlength="30" position="fixed"
       >Qtd. máxima de aluno</ion-label
     >
-    <ion-input type="number" [(ngModel)]="aula.qtdMaxAlunos"></ion-input>
+    <ion-input type="number" [(ngModel)]="aula.QtdMaxAlunos"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Sala</ion-label>
     <ion-select
       interface="action-sheet"
-      [(ngModel)]="aula.cdSala"
+      [(ngModel)]="aula.CdSala"
       (ionChange)="onChange($event)"
       placeholder="Selecione um item"
     >

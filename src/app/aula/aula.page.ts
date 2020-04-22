@@ -9,6 +9,8 @@ import { Aula } from '../model/aula';
 import { UsuarioService } from '../service/usuario.service';
 import { AulaService } from '../service/aula.service';
 import { ActivatedRoute } from '@angular/router';
+import { Turma } from '../model/turma';
+import { TurmaService } from '../service/turma.service';
 
 @Component({
   selector: 'app-aula',
@@ -20,6 +22,7 @@ export class AulaPage implements OnInit {
   disciplinas: Disciplina[] = []
   salas: Sala[] = []
   equipamentos: Equipamento[] = []
+  turmas: Turma[] = []
   aula: Aula = new Aula();
 
   titulo: String = '';
@@ -31,7 +34,8 @@ export class AulaPage implements OnInit {
     private equipamentoService: EquipamentoService,
     private usuarioService: UsuarioService, 
     private aulaService: AulaService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, 
+    private turmaService: TurmaService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe( parametros => {
@@ -52,12 +56,23 @@ export class AulaPage implements OnInit {
       this.salas = result;
     });
 
+    this.turmaService.getTurmas().then(result => {
+      this.turmas = result;
+      console.log('result turma', result);
+      
+    })
+    this.aula.CdProfessor = 3;
   }
  
   submit(value) {
     
-    this.aula = value;
-    this.aula.cdProfessor = this.usuarioService.dadosUsuarioLogado.cdUsuario;
+   /* this.aula.CdAula = 0;
+    this.aula.DsHorario = '';
+    this.aula.DsProfessor = '';
+    this.aula.DsSala = '';
+    this.aula.DsDisciplina = '';
+    this.aula.DsTurma = '';*/
+
     
     if (this.btnTitulo == 'Editar') {
 

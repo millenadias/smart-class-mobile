@@ -1,15 +1,18 @@
 import { NumericValueAccessor } from '@ionic/angular';
 
 export class Aula {
-    public cdAula: number;
-    public dsHorario: string;
-    public cdProfessor: number;
-    public dsProfessor: string;
-    public cdDisciplina: number;
-    public qtdMaxAlunos: number;
-    public dsSemestre: number;
-    public cdSala: number;
-    public dsSala: string;
-    public dtAula: Date;
-    public dsDisciplina: string;
+    public CdAula: number;
+    public DsHorario: string;
+    public CdProfessor: number;
+    public DsProfessor: string;
+    public CdDisciplina: number;
+    public QtdMaxAlunos: number;
+    public DsSemestre: number;
+    public CdSala: number;
+    public DsSala: string;
+    public DtAula: Date;
+    public DsDisciplina: string;
+    public CdTurma: number;
+    public DsTurma: string;
+    public DtAulaFormatada: string;
 }

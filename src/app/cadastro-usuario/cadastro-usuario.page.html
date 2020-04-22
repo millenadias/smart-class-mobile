@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cadastro-usuario</ion-title>
+    <ion-title>Cadastro de Usuário</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+<ion-item>
+  <ion-label color="primary" id="lblUsuario">Nome</ion-label>
+  <ion-input placeholder="Nome do Usuário" [(ngModel)]="name"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color="primary">Login</ion-label>
+  <ion-input placeholder="RA" [(ngModel)]="login"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color="primary">Senha</ion-label>
+  <ion-input type="password" placeholder="*******" [(ngModel)]="password"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color="primary">Tipo de Usuário</ion-label>
+  <ion-select placeholder="Selecione" okText="Selecionar" cancelText="Cancelar"  [(ngModel)]="typeUser">
+    <ion-select-option value="1">Aluno</ion-select-option>
+    <ion-select-option value="2">Professor</ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-button expand="block" (click)="submit()">Cadastrar</ion-button>
 </ion-content>
