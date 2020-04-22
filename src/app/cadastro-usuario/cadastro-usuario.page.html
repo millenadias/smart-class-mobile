@@ -5,24 +5,46 @@
 </ion-header>
 
 <ion-content>
-<ion-item>
-  <ion-label color="primary" id="lblUsuario">Nome</ion-label>
-  <ion-input placeholder="Nome do Usuário" [(ngModel)]="name"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label color="primary">Login</ion-label>
-  <ion-input placeholder="RA" [(ngModel)]="login"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label color="primary">Senha</ion-label>
-  <ion-input type="password" placeholder="*******" [(ngModel)]="password"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label color="primary">Tipo de Usuário</ion-label>
-  <ion-select placeholder="Selecione" okText="Selecionar" cancelText="Cancelar"  [(ngModel)]="typeUser">
-    <ion-select-option value="1">Aluno</ion-select-option>
-    <ion-select-option value="2">Professor</ion-select-option>
-  </ion-select>
-</ion-item>
-<ion-button expand="block" (click)="submit()">Cadastrar</ion-button>
+  <ion-item class="margemItem">
+    <ion-label color="dark" id="lblUsuario">Nome</ion-label>
+    <ion-input placeholder="Nome do Usuário" [(ngModel)]="name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="dark">Login</ion-label>
+    <ion-input placeholder="RA" [(ngModel)]="login"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="dark">Senha</ion-label>
+    <ion-input
+      type="password"
+      placeholder="*******"
+      [(ngModel)]="password"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="dark">Tipo de Usuário</ion-label>
+    <ion-select
+      placeholder="Selecione"
+      okText="Selecionar"
+      cancelText="Cancelar"
+      [(ngModel)]="typeUser"
+    >
+      <ion-select-option value="1">Aluno</ion-select-option>
+      <ion-select-option value="2">Professor</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button
+    expand="block"
+    (click)="submit()"
+    color="secondary"
+    class="botaoCadastrar"
+  >
+    Cadastrar</ion-button
+  >
+
+  <hr class="solid" />
+  <p>
+    Já possui uma conta? Faça
+    <a [routerLink]="['/login']" class="link"><strong>login</strong></a>
+  </p>
 </ion-content>
