@@ -1,31 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Aulas </ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <ion-list-header>
-    <ion-label class="labelAumentada">
-      Olá, {{ nomeUsuario }}
+    <ion-label>
+      Aulas
     </ion-label>
   </ion-list-header>
 
   <ion-grid class="gridMargem">
     <ion-row>
       <ion-col *ngFor="let item of aulas" class="bordaArredondada" size="5">
-        <h6 class="tituloNegrito textoAlinhado">
+        <h5 class="tituloNegrito textoAlinhado">
           {{ item.DtAulaFormatada }}
-          <ion-icon
-            name="create-outline"
-            class="iconEditar"
-            (click)="editarAula()"
-          >
-          </ion-icon>
-        </h6>
+        </h5>
         <h6 class="textoAlinhado">{{ item.DsDisciplina }}</h6>
         <h6><strong>Sala:</strong> {{ item.DsSala }}</h6>
         <h6><strong>Turma:</strong> MOAI2324</h6>
+        <ion-icon
+          name="create-outline"
+          class="iconEditar"
+          (click)="editarAula()"
+        >
+        </ion-icon>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-
-<!-- <ion-button expand="block" (click)="cadastrarAula()">Cadastrar</ion-button>
-  <ion-button expand="block" (click)="editarAula()">Editar</ion-button>
-
-</ion-content>   -->

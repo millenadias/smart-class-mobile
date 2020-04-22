@@ -1,15 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> {{ titulo }} </ion-title>
+    <ion-title>Cadastro de Aula </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ion-list-header>
-      <ion-label>
-        Aula
-      </ion-label>
+      <h3><strong>Aula</strong></h3>
     </ion-list-header>
 
     <ion-item>
@@ -90,9 +88,7 @@
   </ion-item>
 
   <ion-list-header *ngIf="equipamentos && equipamentos.length > 0">
-    <ion-label>
-      Preferências
-    </ion-label>
+    <h3><strong>Preferências</strong></h3>
   </ion-list-header>
 
   <ion-list *ngFor="let item of equipamentos">
@@ -107,5 +103,12 @@
     </ion-item>
   </ion-list>
 
-  <ion-button expand="block" (click)="submit()"> {{ btnTitulo }} </ion-button>
+  <ion-button
+    expand="block"
+    (click)="submit()"
+    color="secondary"
+    class="margemBotao"
+  >
+    {{ btnTitulo }}
+  </ion-button>
 </ion-content>
