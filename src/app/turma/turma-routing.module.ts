@@ -1,13 +1,14 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { AulaPage } from "./aula.page";
+import { TurmaPage } from "./turma.page";
 
 const routes: Routes = [
   {
     path: "",
-    component: AulaPage,
+    component: TurmaPage,
   },
+
   {
     path: "home",
     loadChildren: () =>
@@ -34,4 +35,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AulaPageRoutingModule {}
+export class TurmaPageRoutingModule {}

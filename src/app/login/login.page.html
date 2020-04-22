@@ -22,10 +22,22 @@
         name="senha"
       ></ion-input>
     </ion-item>
-    <ion-button expand="block" (click)="onSubmit()">Entrar</ion-button>
-    <ion-button expand="block" color="light" (click)="cadastro()"
-      >Cadastrar-se</ion-button
+    <ion-button
+      expand="block"
+      (click)="onSubmit()"
+      color="secondary"
+      class="botaoLogin"
     >
+      Entrar
+    </ion-button>
+    <ion-button
+      expand="block"
+      color="medium"
+      (click)="cadastro()"
+      class="botaoCadastrar"
+    >
+      Cadastrar-se
+    </ion-button>
     <div *ngIf="loginErrado">
       <ion-label style="color: red;">Login inválido</ion-label>
     </div>

@@ -31,7 +31,11 @@ const routes: Routes = [
       import("./cadastro-usuario/cadastro-usuario.module").then(
         (m) => m.CadastroUsuarioPageModule
       ),
+  },  {
+    path: 'turma',
+    loadChildren: () => import('./turma/turma.module').then( m => m.TurmaPageModule)
   },
+
 ];
 
 @NgModule({

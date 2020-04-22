@@ -25,31 +25,31 @@
   </ion-grid>
 </ion-content>
 
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home">
-      <ion-icon name="home-sharp" class="iconeColorido"></ion-icon>
-      <ion-label>Home</ion-label>
-      <!-- <ion-badge>6</ion-badge> -->
-    </ion-tab-button>
+<ion-app>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-icon name="home-sharp" class="iconeColorido"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
 
-    <ion-tab-button tab="aulas">
-      <ion-icon name="list-circle-sharp"></ion-icon>
-      <ion-label>Aulas</ion-label>
-      <!-- <ion-badge>6</ion-badge> -->
-    </ion-tab-button>
+      <ion-tab-button tab="aulas">
+        <ion-icon name="list-circle-sharp"></ion-icon>
+        <ion-label>Aulas</ion-label>
+      </ion-tab-button>
 
-    <ion-tab-button tab="cadastro-aula" (ionChange)="myFunction()">
-      <ion-icon name="add-circle-sharp"></ion-icon>
-      <ion-label>Cadastro de Aula</ion-label>
-    </ion-tab-button>
+      <ion-tab-button tab="aula">
+        <ion-icon name="add-circle-sharp"></ion-icon>
+        <ion-label>Cadastro de Aula</ion-label>
+      </ion-tab-button>
 
-    <ion-tab-button tab="turmas">
-      <ion-icon name="school-sharp"></ion-icon>
-      <ion-label>Turmas</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+      <ion-tab-button tab="turma">
+        <ion-icon name="school-sharp"></ion-icon>
+        <ion-label>Turmas</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-app>
 
 <!-- <ion-button expand="block" (click)="cadastrarAula()">Cadastrar</ion-button>
   <ion-button expand="block" (click)="editarAula()">Editar</ion-button>
