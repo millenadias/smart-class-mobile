@@ -1,20 +1,98 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <!-- <ion-list padding>
+    
+    <ion-item *ngFor="let item of aulas">
+      <ion-grid>
+        {{ item.dtAula}}
+</ion-grid> <br><p></p>
+      {{item.dsSala}}</ion-item>
+  </ion-list>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-item>
+      <ion-grid>
+        <h5>20.04 - 19:00</h5>
+        <h6>Arquitetura de Computadores e Sistemas</h6>
+        <h6>Sala: B107</h6>
+      </ion-grid>
+    </ion-item>
+  <ion-button expand="block" (click)="cadastrarAula()">Cadastrar</ion-button>
+  <ion-button expand="block" (click)="editarAula()">Editar</ion-button>
+</ion-content>  
+</ion-list>-->
+  <ion-list-header>
+    <ion-label class="labelAumentada">
+      Olá, Éslin
+    </ion-label>
+  </ion-list-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid class="gridMargem">
+    <ion-row>
+      <ion-col class="bordaArredondada" size="5">
+        <h6 class="tituloNegrito textoAlinhado">
+          21.04 - 19:00<ion-icon name="create-outline" class="iconEditar">
+          </ion-icon>
+        </h6>
+        <h6 class="textoAlinhado">Projeto Interdisciplinar</h6>
+        <h6><strong>Sala:</strong> B304</h6>
+        <h6><strong>Turma:</strong> MOAI2324</h6>
+      </ion-col>
+
+      <ion-col class="bordaArredondada" size="5">
+        <h6 class="tituloNegrito textoAlinhado">
+          22.04 - 19:00
+          <ion-icon name="create-outline" class="iconEditar"></ion-icon>
+        </h6>
+        <h6 class="textoAlinhado">Desenvolvimento Mobile e IoT</h6>
+        <h6><strong>Sala:</strong> B203</h6>
+        <h6><strong>Turma:</strong> MOAI2324</h6>
+      </ion-col>
+
+      <ion-col class="bordaArredondada" size="5">
+        <h6 class="tituloNegrito textoAlinhado">
+          21.04 - 19:00
+          <ion-icon name="create-outline" class="iconEditar"></ion-icon>
+        </h6>
+        <h6 class="textoAlinhado">Projeto Interdisciplinar</h6>
+
+        <h6><strong>Sala:</strong> B304</h6>
+        <h6><strong>Turma:</strong> MOAI2324</h6>
+      </ion-col>
+
+      <ion-col class="bordaArredondada" size="5">
+        <h6 class="tituloNegrito textoAlinhado">
+          22.04 - 19:00
+          <ion-icon name="create-outline" class="iconEditar"></ion-icon>
+        </h6>
+        <h6 class="textoAlinhado">Desenvolvimento Mobile e IoT</h6>
+        <h6><strong>Sala:</strong> B203</h6>
+        <h6><strong>Turma:</strong> MOAI2324</h6>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home-sharp" class="iconeColorido"></ion-icon>
+      <ion-label>Home</ion-label>
+      <!-- <ion-badge>6</ion-badge> -->
+    </ion-tab-button>
+
+    <ion-tab-button tab="aulas">
+      <ion-icon name="list-circle-sharp"></ion-icon>
+      <ion-label>Aulas</ion-label>
+      <!-- <ion-badge>6</ion-badge> -->
+    </ion-tab-button>
+
+    <ion-tab-button tab="cadastro-aula">
+      <ion-icon name="add-circle-sharp"></ion-icon>
+      <ion-label>Cadastro de Aula</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="turmas">
+      <ion-icon name="school-sharp"></ion-icon>
+      <ion-label>Turmas</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

@@ -1,18 +1,7 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <form (ngSubmit)="onSubmit()">
     <ion-item>
-      <ion-img
-        width="40"
-        height="40"
-        style="padding: 10%;"
-        src="..\..\assets\logo.jpg"
-      ></ion-img>
+      <ion-img src="..\..\assets\logo.jpg"></ion-img>
     </ion-item>
     <ion-item>
       <!-- <ion-label>Login</ion-label> -->
@@ -23,6 +12,7 @@
         name="login"
       ></ion-input>
     </ion-item>
+
     <ion-item>
       <!-- <ion-label>Senha</ion-label> -->
       <ion-input

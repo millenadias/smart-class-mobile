@@ -14,34 +14,56 @@
 
     <ion-item>
       <ion-label>Disciplina</ion-label>
-      <ion-select interface="action-sheet" [(ngModel)]="aula.cdDisciplina" placeholder="Selecione um item">
-        <ion-select-option *ngFor="let item of disciplinas" [value]="item.CdDisciplina" (click)="teste($event)">
+      <ion-select
+        interface="action-sheet"
+        [(ngModel)]="aula.cdDisciplina"
+        placeholder="Selecione um item"
+      >
+        <ion-select-option
+          *ngFor="let item of disciplinas"
+          [value]="item.CdDisciplina"
+          (click)="teste($event)"
+        >
           {{item.DsDisciplina}}
         </ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Data Inicial</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY, HH:mm" [(ngModel)]="aula.dtAula" placeholder="Selecione a data">
+      <ion-datetime
+        displayFormat="DD MMM YYYY, HH:mm"
+        [(ngModel)]="aula.dtAula"
+        placeholder="Selecione a data"
+      >
       </ion-datetime>
     </ion-item>
   </ion-list>
 
   <ion-item>
     <ion-label>Semestre</ion-label>
-    <ion-input type="text" [(ngModel)]="aula.dsSemestre" placeholder="" max-length="100"></ion-input>
+    <ion-input
+      type="text"
+      [(ngModel)]="aula.dsSemestre"
+      placeholder=""
+      max-length="100"
+    ></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label type="number" inputmode="numeric" maxlength="30" position="fixed">Qtd.
-      máxima de aluno</ion-label>
-    <ion-input type="number" [(ngModel)]="aula.qtdMaxAlunos" ></ion-input>
+    <ion-label type="number" inputmode="numeric" maxlength="30" position="fixed"
+      >Qtd. máxima de aluno</ion-label
+    >
+    <ion-input type="number" [(ngModel)]="aula.qtdMaxAlunos"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Sala</ion-label>
-    <ion-select interface="action-sheet" [(ngModel)]="aula.cdSala" (ionChange)="onChange($event)"
-      placeholder="Selecione um item">
+    <ion-select
+      interface="action-sheet"
+      [(ngModel)]="aula.cdSala"
+      (ionChange)="onChange($event)"
+      placeholder="Selecione um item"
+    >
       <ion-select-option *ngFor="let item of salas" [value]="item.CdSala">
         {{item.DsSala}}
       </ion-select-option>
@@ -56,7 +78,11 @@
 
   <ion-list *ngFor="let item of equipamentos">
     <ion-item>
-      <ion-checkbox color="danger" [(ngModel)]="item.marcado" [checked]="item.marcado">
+      <ion-checkbox
+        color="danger"
+        [(ngModel)]="item.marcado"
+        [checked]="item.marcado"
+      >
       </ion-checkbox>
       <ion-label> {{ item.DsEquipamento }} </ion-label>
     </ion-item>
