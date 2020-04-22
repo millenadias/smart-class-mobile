@@ -19,52 +19,27 @@
   <ion-button expand="block" (click)="editarAula()">Editar</ion-button>
 </ion-content>  
 </ion-list>-->
+
   <ion-list-header>
     <ion-label class="labelAumentada">
-      Olá, Éslin
+      Olá, {{ nomeUsuario }}
     </ion-label>
   </ion-list-header>
 
   <ion-grid class="gridMargem">
     <ion-row>
-      <ion-col class="bordaArredondada" size="5">
+      <ion-col *ngFor="let item of aulas" class="bordaArredondada" size="5">
         <h6 class="tituloNegrito textoAlinhado">
-          21.04 - 19:00<ion-icon name="create-outline" class="iconEditar">
+          {{ item.DtAulaFormatada }}
+          <ion-icon
+            name="create-outline"
+            class="iconEditar"
+            (click)="editarAula()"
+          >
           </ion-icon>
         </h6>
-        <h6 class="textoAlinhado">Projeto Interdisciplinar</h6>
-        <h6><strong>Sala:</strong> B304</h6>
-        <h6><strong>Turma:</strong> MOAI2324</h6>
-      </ion-col>
-
-      <ion-col class="bordaArredondada" size="5">
-        <h6 class="tituloNegrito textoAlinhado">
-          22.04 - 19:00
-          <ion-icon name="create-outline" class="iconEditar"></ion-icon>
-        </h6>
-        <h6 class="textoAlinhado">Desenvolvimento Mobile e IoT</h6>
-        <h6><strong>Sala:</strong> B203</h6>
-        <h6><strong>Turma:</strong> MOAI2324</h6>
-      </ion-col>
-
-      <ion-col class="bordaArredondada" size="5">
-        <h6 class="tituloNegrito textoAlinhado">
-          21.04 - 19:00
-          <ion-icon name="create-outline" class="iconEditar"></ion-icon>
-        </h6>
-        <h6 class="textoAlinhado">Projeto Interdisciplinar</h6>
-
-        <h6><strong>Sala:</strong> B304</h6>
-        <h6><strong>Turma:</strong> MOAI2324</h6>
-      </ion-col>
-
-      <ion-col class="bordaArredondada" size="5">
-        <h6 class="tituloNegrito textoAlinhado">
-          22.04 - 19:00
-          <ion-icon name="create-outline" class="iconEditar"></ion-icon>
-        </h6>
-        <h6 class="textoAlinhado">Desenvolvimento Mobile e IoT</h6>
-        <h6><strong>Sala:</strong> B203</h6>
+        <h6 class="textoAlinhado">{{ item.DsDisciplina }}</h6>
+        <h6><strong>Sala:</strong> {{ item.DsSala }}</h6>
         <h6><strong>Turma:</strong> MOAI2324</h6>
       </ion-col>
     </ion-row>
@@ -80,19 +55,24 @@
       </ion-tab-button>
 
       <ion-tab-button tab="aulas">
-        <ion-icon name="list-circle-sharp"></ion-icon>
+        <ion-icon name="list-circle-outline"></ion-icon>
         <ion-label>Aulas</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="aula">
-        <ion-icon name="add-circle-sharp"></ion-icon>
+        <ion-icon name="add-circle-outline"></ion-icon>
         <ion-label>Cadastro de Aula</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="turma">
-        <ion-icon name="school-sharp"></ion-icon>
+        <ion-icon name="school-outline"></ion-icon>
         <ion-label>Turmas</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
 </ion-app>
+
+<!-- <ion-button expand="block" (click)="cadastrarAula()">Cadastrar</ion-button>
+  <ion-button expand="block" (click)="editarAula()">Editar</ion-button>
+
+</ion-content>   -->

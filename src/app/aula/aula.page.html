@@ -1,15 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> {{ titulo }} </ion-title>
+    <ion-title>Cadastro de Aula </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ion-list-header>
-      <ion-label>
-        Aula
-      </ion-label>
+      <h3><strong>Aula</strong></h3>
     </ion-list-header>
 
     <ion-item>
@@ -90,9 +88,7 @@
   </ion-item>
 
   <ion-list-header *ngIf="equipamentos && equipamentos.length > 0">
-    <ion-label>
-      Preferências
-    </ion-label>
+    <h3><strong>Preferências</strong></h3>
   </ion-list-header>
 
   <ion-list *ngFor="let item of equipamentos">
@@ -107,19 +103,26 @@
     </ion-item>
   </ion-list>
 
-  <ion-button expand="block" (click)="submit()"> {{ btnTitulo }} </ion-button>
+  <ion-button
+    expand="block"
+    (click)="submit()"
+    color="secondary"
+    class="margemBotao"
+  >
+    {{ btnTitulo }}
+  </ion-button>
 </ion-content>
 
 <ion-app>
-  <ion-tabs>
+  <ion-tabs class="iconeColorido">
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="home">
-        <ion-icon name="home-sharp" class="iconeColorido"></ion-icon>
+        <ion-icon name="home-outline" class="iconeColorido"></ion-icon>
         <ion-label>Home</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="aulas">
-        <ion-icon name="list-circle-sharp"></ion-icon>
+        <ion-icon name="list-circle-outline"></ion-icon>
         <ion-label>Aulas</ion-label>
       </ion-tab-button>
 
@@ -129,7 +132,7 @@
       </ion-tab-button>
 
       <ion-tab-button tab="turma">
-        <ion-icon name="school-sharp"></ion-icon>
+        <ion-icon name="school-outline"></ion-icon>
         <ion-label>Turmas</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
