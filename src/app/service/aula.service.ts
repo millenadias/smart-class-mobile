@@ -4,13 +4,14 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Usuario } from '../model/usuario';
 import { Aula } from '../model/aula';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AulaService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public alertController: AlertController, private navCtrl: NavController) { }
 
   public getAulasProfessor(cdProfessor: number): Promise<any> {
     return this._getAulasProfessor(cdProfessor).toPromise()
@@ -42,15 +43,31 @@ export class AulaService {
    
     return this._cadastrarAula(aula).toPromise()
       .then((data: any) => {
+        if (data == 'A aula foi cadastrada!') 
+          this.presentAlert(true);
+        else 
+          this.presentAlert(false);
+          
         return data;
       })
       .catch((e) => { console.log(e); return { body: e.message, status: e.statusText } });
   }
 
   private _cadastrarAula(aula: Aula) {
+    console.log('aula service', aula);
+    
     return this.http.post(`https://localhost:44354/aula/cadastrarAula`,
-      JSON.stringify(aula)
+     aula
     ).pipe(catchError(e => of(e)));
+  }
+
+  async presentAlert(response) {
+    const alert = await this.alertController.create({
+      header: 'Aviso',
+      message: response == true ? 'A aula foi cadastrada com sucesso!' : 'Erro ao cadastrar aula, entre em contato com um administrador!',
+      buttons: [{ text: 'OK', handler: () => { this.navCtrl.navigateRoot('aulas') } }]
+    });
+    alert.present();
   }
 
   public getAula(cdAula: number) {

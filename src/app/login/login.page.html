@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
   <form (ngSubmit)="onSubmit()">
@@ -33,7 +29,7 @@
       ></ion-input>
     </ion-item>
     <ion-button expand="block" (click)="onSubmit()">Entrar</ion-button>
-    <ion-button expand="block" (click)="cadastro()">Cadastrar</ion-button>
+    <ion-button expand="block" color="light" (click)="cadastro()">Cadastrar-se</ion-button>
     <div *ngIf="loginErrado">
       <ion-label style="color: red;">Login inválido</ion-label>
     </div>
