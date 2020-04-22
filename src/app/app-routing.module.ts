@@ -1,13 +1,52 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { TabsComponent } from './tabs/tabs.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
+  // { path: "", redirectTo: "home", pathMatch: "full" },
   {
-    path: "home",
-    loadChildren: () =>
-      import("./home/home.module").then((m) => m.HomePageModule),
+    path: "tabs",
+    component: TabsComponent,
+    children: [
+      {
+        path: "aula",
+        loadChildren: () =>
+          import("./aula/aula.module").then(
+            (m) => m.AulaPageModule
+          ),
+      },
+      {
+        path: "home",
+        loadChildren: () =>
+          import("./home/home.module").then(
+            (m) => m.HomePageModule
+          ),
+      },
+      {
+        path: "aulas",
+        loadChildren: () =>
+          import("./aulas/aulas.module").then((m) => m.AulasPageModule),
+      },
+      {
+        path: 'turma',
+        loadChildren: () => import('./turma/turma.module').then(m => m.TurmaPageModule)
+      },
+      { path: "", redirectTo: "tabs/home", pathMatch: "full" }
+    ]
   },
+  {
+    path: "login",
+    loadChildren: () =>
+      import("./login/login.module").then((m) => m.LoginPageModule),
+  },
+  {
+    path: "cadastro-usuario",
+    loadChildren: () =>
+      import("./cadastro-usuario/cadastro-usuario.module").then(
+        (m) => m.CadastroUsuarioPageModule
+      ),
+  }
+  /*,
   {
     path: "login",
     loadChildren: () =>
@@ -31,10 +70,11 @@ const routes: Routes = [
       import("./cadastro-usuario/cadastro-usuario.module").then(
         (m) => m.CadastroUsuarioPageModule
       ),
-  },  {
-    path: 'turma',
-    loadChildren: () => import('./turma/turma.module').then( m => m.TurmaPageModule)
   },
+  {
+    path: 'turma',
+    loadChildren: () => import('./turma/turma.module').then(m => m.TurmaPageModule)
+  },*/
 
 ];
 
@@ -44,4 +84,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

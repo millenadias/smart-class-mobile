@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
     this.usuarioService.getDadosUsuario(this.usuario.dsLogin, this.usuario.dsSenha).then((result: Usuario) => {
 
       if (result.cdUsuario && result.cdUsuario > 0)
-        this.navCtrl.navigateRoot('aulas');
+        this.navCtrl.navigateRoot('tabs/home');
       else
         this.loginErrado = true;
     })
