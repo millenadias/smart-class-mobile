@@ -45,7 +45,11 @@ const routes: Routes = [
       import("./cadastro-usuario/cadastro-usuario.module").then(
         (m) => m.CadastroUsuarioPageModule
       ),
+  },  {
+    path: 'visualiza-turma',
+    loadChildren: () => import('./visualiza-turma/visualiza-turma.module').then( m => m.VisualizaTurmaPageModule)
   }
+
   /*,
   {
     path: "login",
