@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { IonicModule } from "@ionic/angular";
 
-import { TurmaPage } from './turma.page';
+import { TurmaPage } from "./turma.page";
 
-describe('TurmaPage', () => {
+describe("TurmaPage", () => {
   let component: TurmaPage;
   let fixture: ComponentFixture<TurmaPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TurmaPage ],
-      imports: [IonicModule.forRoot()]
+      declarations: [TurmaPage],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TurmaPage);
@@ -18,7 +18,7 @@ describe('TurmaPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
