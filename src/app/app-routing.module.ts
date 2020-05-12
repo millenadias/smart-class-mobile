@@ -1,27 +1,22 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
-import { TabsComponent } from './tabs/tabs.component';
+import { TabsComponent } from "./tabs/tabs.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   {
-
     path: "tabs",
     component: TabsComponent,
     children: [
       {
         path: "aula",
         loadChildren: () =>
-          import("./aula/aula.module").then(
-            (m) => m.AulaPageModule
-          ),
+          import("./aula/aula.module").then((m) => m.AulaPageModule),
       },
       {
         path: "home",
         loadChildren: () =>
-          import("./home/home.module").then(
-            (m) => m.HomePageModule
-          ),
+          import("./home/home.module").then((m) => m.HomePageModule),
       },
       {
         path: "aulas",
@@ -29,16 +24,20 @@ const routes: Routes = [
           import("./aulas/aulas.module").then((m) => m.AulasPageModule),
       },
       {
-        path: 'turma',
-        loadChildren: () => import('./turma/turma.module').then(m => m.TurmaPageModule)
+        path: "turma",
+        loadChildren: () =>
+          import("./turma/turma.module").then((m) => m.TurmaPageModule),
       },
       
       {
-        path: 'visualiza-turma',
-        loadChildren: () => import('./visualiza-turma/visualiza-turma.module').then(m => m.VisualizaTurmaPageModule)
+        path: "visualiza-turma",
+        loadChildren: () =>
+          import("./visualiza-turma/visualiza-turma.module").then(
+            (m) => m.VisualizaTurmaPageModule
+          ),
       },
-      { path: "", redirectTo: "tabs/home", pathMatch: "full" }
-    ]
+      { path: "", redirectTo: "tabs/home", pathMatch: "full" },
+    ],
   },
   {
     path: "login",
@@ -51,7 +50,7 @@ const routes: Routes = [
       import("./cadastro-usuario/cadastro-usuario.module").then(
         (m) => m.CadastroUsuarioPageModule
       ),
-  }
+  },
   /*,
   {
     path: "login",
@@ -81,7 +80,6 @@ const routes: Routes = [
     path: 'turma',
     loadChildren: () => import('./turma/turma.module').then(m => m.TurmaPageModule)
   },*/
-
 ];
 
 @NgModule({
@@ -90,4 +88,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
