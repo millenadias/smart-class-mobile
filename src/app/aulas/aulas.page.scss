@@ -1,25 +1,10 @@
-.tituloNegrito {
-  font-weight: bold;
+.iconeMargem {
+  --ionicon-stroke-width: 16px;
+  margin: 15px;
 }
-.bordaArredondada {
-  background-color: var(--ion-cor-padrao2);
-  border-radius: 20px;
-  margin: 1%;
+.itemMargem {
+  margin-top: 3%;
 }
-.textoAlinhado {
-  text-align: center;
-}
-
-ion-icon {
-  background: #949494;
-  color: #ffffff;
-  margin-left: 9em;
-}
-.gridMargem {
-  margin-left: 1.5em;
-  margin-top: 1.5em;
-}
-
-h5 {
-  color: #494949;
+.iconeVisualiza {
+  margin-right: 5%;
 }

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid class="gridMargem">
+  <!--  <ion-grid class="gridMargem">
     <ion-row>
       <ion-col *ngFor="let item of aulas" class="bordaArredondada" size="5.5">
         <h5 class="tituloNegrito textoAlinhado">
@@ -20,4 +20,23 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+-->
+
+  <ion-item *ngFor="let item of aulas" class="itemMargem">
+    <ion-icon name="school-outline" class="iconeMargem"></ion-icon>
+    <ion-label>
+      <h4><strong>{{ item.DtAulaFormatada }}</strong></h4>
+      <h4>Disciplina: {{ item.DsDisciplina }}</h4>
+      <p>Turma: MOAI2324</p>
+      <p>Sala: {{ item.DsSala }}</p>
+      <ion-button color="light">
+        <ion-icon
+          name="create-outline
+        "
+          class="iconeVisualiza"
+        ></ion-icon>
+        Editar aula
+      </ion-button>
+    </ion-label>
+  </ion-item>
 </ion-content>
