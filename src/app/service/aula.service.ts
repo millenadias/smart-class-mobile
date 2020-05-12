@@ -25,7 +25,7 @@ export class AulaService {
             aulas.push(aula);
           });
         }
-        
+
         return aulas;
       })
   }
@@ -39,15 +39,41 @@ export class AulaService {
       }).pipe(catchError(e => of(e)))
   }
 
+
+  public getAulasDiaProfessor(cdProfessor: number): Promise<any> {
+    return this._getAulasDiaProfessor(cdProfessor).toPromise()
+      .then((data) => {
+        let aulas = Array<Aula>();
+
+        if (data) {
+          data.forEach(element => {
+            let aula = new Aula();
+            Object.assign(aula, element);
+            aulas.push(aula);
+          });
+        }
+
+        return aulas;
+      })
+  }
+
+  private _getAulasDiaProfessor(cdProfessor: number) {
+    return this.http.get(`https://localhost:44354/aula/ListarAulasDiaProfessor`,
+      {
+        params: {
+          "pCdProfessor": cdProfessor.toString()
+        }
+      }).pipe(catchError(e => of(e)))
+  }
   public cadastrarAula(aula: Aula) {
-   
+
     return this._cadastrarAula(aula).toPromise()
       .then((data: any) => {
-        if (data == 'A aula foi cadastrada!') 
+        if (data == 'A aula foi cadastrada!')
           this.presentAlert(true);
-        else 
+        else
           this.presentAlert(false);
-          
+
         return data;
       })
       .catch((e) => { console.log(e); return { body: e.message, status: e.statusText } });
@@ -55,9 +81,9 @@ export class AulaService {
 
   private _cadastrarAula(aula: Aula) {
     console.log('aula service', aula);
-    
+
     return this.http.post(`https://localhost:44354/aula/cadastrarAula`,
-     aula
+      aula
     ).pipe(catchError(e => of(e)));
   }
 
@@ -65,7 +91,7 @@ export class AulaService {
     const alert = await this.alertController.create({
       header: 'Aviso',
       message: response == true ? 'A aula foi cadastrada com sucesso!' : 'Erro ao cadastrar aula, entre em contato com um administrador!',
-      buttons: [{ text: 'OK', handler: () => { this.navCtrl.navigateRoot('aulas') } }]
+      buttons: [{ text: 'OK', handler: () => { this.navCtrl.navigateRoot('tabs/aulas') } }]
     });
     alert.present();
   }
@@ -75,19 +101,19 @@ export class AulaService {
       .then((data) => {
         let aula = new Aula();
 
-        if (data) 
+        if (data)
           aula = data;
-          
+
         return aula;
       })
   }
 
   private _getAula(cdAula: number) {
     return this.http.get(`https://localhost:44354/aula/getAula`,
-    {
-      params: {
-        "CdAula": cdAula.toString()
-      }
-    }).pipe(catchError(e => of(e)))
+      {
+        params: {
+          "CdAula": cdAula.toString()
+        }
+      }).pipe(catchError(e => of(e)))
   }
 }

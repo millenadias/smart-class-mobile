@@ -1,5 +1,7 @@
 {
   "name": "smart-class-mobile",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

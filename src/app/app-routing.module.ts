@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { TabsComponent } from "./tabs/tabs.component";
 
 const routes: Routes = [
-  // { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "", redirectTo: "login", pathMatch: "full" },
   {
     path: "tabs",
     component: TabsComponent,
@@ -28,6 +28,7 @@ const routes: Routes = [
         loadChildren: () =>
           import("./turma/turma.module").then((m) => m.TurmaPageModule),
       },
+      ,
       {
         path: "visualiza-turma",
         loadChildren: () =>
@@ -50,7 +51,6 @@ const routes: Routes = [
         (m) => m.CadastroUsuarioPageModule
       ),
   },
-
   /*,
   {
     path: "login",
