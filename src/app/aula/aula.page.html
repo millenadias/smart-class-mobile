@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Cadastro de Aula </ion-title>
+    <ion-title> {{ titulo }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -21,7 +21,7 @@
           *ngFor="let item of disciplinas"
           [value]="item.CdDisciplina"
         >
-          {{item.dsDisciplina}}
+          {{item.DsDisciplina}}
         </ion-select-option>
       </ion-select>
     </ion-item>

@@ -3,8 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { TabsComponent } from './tabs/tabs.component';
 
 const routes: Routes = [
-  // { path: "", redirectTo: "home", pathMatch: "full" },
+   { path: "", redirectTo: "login", pathMatch: "full" },
   {
+    
     path: "tabs",
     component: TabsComponent,
     children: [

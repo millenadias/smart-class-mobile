@@ -51,6 +51,8 @@ export class AulaPage implements OnInit {
     });
     this.disciplinaService.getDisciplinas().then((result) => {
       this.disciplinas = result;
+      console.log(this.disciplinas);
+      
     });
 
     this.salaService.getSalas().then((result) => {

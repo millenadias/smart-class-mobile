@@ -26,7 +26,7 @@ export class AulasPage implements OnInit {
       this.nomeUsuario = nome[0];
     } else this.nomeUsuario = "Lucas";
 
-    let aula1 = new Aula();
+   /* let aula1 = new Aula();
     aula1.DsDisciplina = "Disciplina 1";
     aula1.DsSemestre = 1;
     aula1.DtAula = new Date();
@@ -57,8 +57,8 @@ export class AulasPage implements OnInit {
     console.log(aula2.DtAula);
 
     this.aulas.push(aula2);
-
-    /*this.aulaService.getAulasProfessor(3).then(result => {
+*/
+    this.aulaService.getAulasProfessor(3).then(result => {
       this.aulas = result;
       
       this.aulas.forEach(item => {
@@ -67,7 +67,7 @@ export class AulasPage implements OnInit {
                               (item.DtAula.getMonth() + 1) + " - " +
         item.DtAula.getHours() + ":" + item.DtAula.getMinutes()
       })
-    });*/
+    });
   }
 
   cadastrarAula() {
@@ -75,6 +75,6 @@ export class AulasPage implements OnInit {
   }
 
   editarAula() {
-    this.navCtrl.navigateRoot("aula" + "?cdAula=10");
+    this.navCtrl.navigateRoot("tabs/aula" + "?cdAula=10");
   }
 }

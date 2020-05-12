@@ -1,25 +1,5 @@
 <ion-content>
-  <!-- <ion-list padding>
-    
-    <ion-item *ngFor="let item of aulas">
-      <ion-grid>
-        {{ item.dtAula}}
-</ion-grid> <br><p></p>
-      {{item.dsSala}}</ion-item>
-  </ion-list>
-
-    <ion-item>
-      <ion-grid>
-        <h5>20.04 - 19:00</h5>
-        <h6>Arquitetura de Computadores e Sistemas</h6>
-        <h6>Sala: B107</h6>
-      </ion-grid>
-    </ion-item>
-  <ion-button expand="block" (click)="cadastrarAula()">Cadastrar</ion-button>
-  <ion-button expand="block" (click)="editarAula()">Editar</ion-button>
-</ion-content>  
-</ion-list>-->
-
+  
   <ion-list-header>
     <ion-label class="labelAumentada">
       Olá, {{ nomeUsuario }}
@@ -28,19 +8,16 @@
 
   <ion-grid class="gridMargem">
     <ion-row>
-      <ion-col *ngFor="let item of aulas" class="bordaArredondada" size="5">
-        <h6 class="tituloNegrito textoAlinhado">
+      <ion-col *ngFor="let item of aulas" class="bordaArredondada" size="5.5">
+        <h5 class="tituloNegrito textoAlinhado">
           {{ item.DtAulaFormatada }}
-          <ion-icon
-            name="create-outline"
-            class="iconEditar"
-            (click)="editarAula()"
-          >
-          </ion-icon>
-        </h6>
+        </h5>
         <h6 class="textoAlinhado">{{ item.DsDisciplina }}</h6>
-        <h6><strong>Sala:</strong> {{ item.DsSala }}</h6>
-        <h6><strong>Turma:</strong> MOAI2324</h6>
+        <h6>Turma: MOAI2324</h6>
+        <h6>Sala: {{ item.DsSala }}</h6>
+
+        <ion-icon name="create-sharp" class="iconEditar" (click)="editarAula()">
+        </ion-icon>
       </ion-col>
     </ion-row>
   </ion-grid>
