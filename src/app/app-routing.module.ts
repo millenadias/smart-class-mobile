@@ -28,7 +28,6 @@ const routes: Routes = [
         loadChildren: () =>
           import("./turma/turma.module").then((m) => m.TurmaPageModule),
       },
-      ,
       {
         path: "visualiza-turma",
         loadChildren: () =>
