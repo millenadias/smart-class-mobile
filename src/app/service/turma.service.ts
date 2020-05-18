@@ -30,4 +30,5 @@ export class TurmaService {
   private _getTurmas() {
     return this.http.get(`https://localhost:44354/turma/ListarTurmas`).pipe(catchError(e => of(e)))
   }
+  
 }

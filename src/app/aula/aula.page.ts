@@ -26,7 +26,6 @@ export class AulaPage implements OnInit {
 
   titulo: String = "";
   btnTitulo: String = "";
-
   codigoDisc: number;
   constructor(
     private disciplinaService: DisciplinaService,
@@ -36,23 +35,12 @@ export class AulaPage implements OnInit {
     private aulaService: AulaService,
     private route: ActivatedRoute,
     private turmaService: TurmaService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe((parametros) => {
-      if (parametros["cdAula"]) {
-        console.log("cdAula", parametros["cdAula"]);
-        this.titulo = "Editar Aula";
-        this.btnTitulo = "Editar";
-      } else {
-        this.titulo = "Cadastrar Aula";
-        this.btnTitulo = "Cadastrar";
-      }
-    });
+
     this.disciplinaService.getDisciplinas().then((result) => {
       this.disciplinas = result;
-      console.log(this.disciplinas);
-      
     });
 
     this.salaService.getSalas().then((result) => {
@@ -61,26 +49,72 @@ export class AulaPage implements OnInit {
 
     this.turmaService.getTurmas().then((result) => {
       this.turmas = result;
-      console.log("result turma", result);
     });
-    this.aula.CdProfessor = 3;
+
+    this.aula.CdProfessor = this.usuarioService.dadosUsuarioLogado.cdUsuario;
+
+    this.route.queryParams.subscribe((parametros) => {
+      if (parametros["cdAula"]) {
+        this.titulo = "Editar Aula";
+        this.btnTitulo = "Editar";
+        this.aulaService.getAula(parametros["cdAula"]).then(data => {
+          if (data != undefined) {
+            this.aula = data;
+
+            this.equipamentoService.getEquipamentos(this.aula.CdSala).then((result) => {
+              this.equipamentos = result;
+            });
+
+            this.aulaService.carregarPreferencias(this.aula.CdAula).then((data: Array<number>) => {
+              this.carregarPreferencias(data);
+            })
+          }
+  
+        })
+      } else {
+        this.titulo = "Cadastrar Aula";
+        this.btnTitulo = "Cadastrar";
+      }
+    });
+    
+  }
+
+  carregarPreferencias(preferencias: Array<number>) {
+    preferencias.forEach(item => {
+      this.equipamentos.filter(x => x.CdEquipamento == item).forEach(equip => {
+        equip.marcado = true;
+      });
+    })
+  }
+
+  ionViewDidLeave() {
+    this.aula = new Aula();
+    this.equipamentos = [];
   }
 
   submit(value) {
-    this.aula.CdAula = 0;
-    this.aula.DsHorario = "";
-    this.aula.DsProfessor = "";
-    this.aula.DsSala = "";
-    this.aula.DsDisciplina = "";
-    this.aula.DsTurma = "";
+    if (this.validarCampos() == true) {
+      this.aulaService.validarAulaPermitida(this.aula.CdSala, this.aula.DtAulaIni, this.aula.DtAulaFim).then(data => {
+        if (data == true) {
+          this.aula.CdProfessor = this.usuarioService.dadosUsuarioLogado.cdUsuario;
+          let equipamentosMarcados: Array<number> = [];
+          this.equipamentos.forEach(item => {
+            if (item.marcado)
+              equipamentosMarcados.push(item.CdEquipamento);
+          });
 
-    if (this.btnTitulo == "Editar") {
-    } else {
-      this.aulaService.cadastrarAula(this.aula);
+          if (this.aula.CdAula != undefined && this.aula.CdAula > 0) {
+            this.aulaService.alterarAula(this.aula, equipamentosMarcados);
+          } else {
+            this.aulaService.cadastrarAula(this.aula, equipamentosMarcados);
+          }
+        } else {
+          this.aulaService.alertValidacao("Sala indisponível para o horário informado");
+        }
+      });
     }
-
-    console.log("this aula", this.aula);
   }
+
   onChange(value) {
     let detail = value["detail"];
     let valor = detail["value"];
@@ -88,5 +122,39 @@ export class AulaPage implements OnInit {
     this.equipamentoService.getEquipamentos(valor).then((result) => {
       this.equipamentos = result;
     });
+  }
+
+  validarCampos(): boolean {
+    
+    if (this.aula.CdDisciplina == undefined) {      
+      this.aulaService.alertValidacao("Selecione a disciplina.");
+      return false;
+    }
+
+    if (this.aula.CdTurma == undefined) {
+      this.aulaService.alertValidacao("Selecione a turma.")
+      return false;
+    }
+
+    if (this.aula.DtAulaIni == undefined) {
+      this.aulaService.alertValidacao("Informe a data e horário de início.")
+      return false;
+    }
+
+    if (this.aula.DtAulaFim == undefined) {
+      this.aulaService.alertValidacao("Informe a data e horário de final.")
+      return false;
+    }
+
+    if (this.aula.DtAulaFim < this.aula.DtAulaIni) {
+      this.aulaService.alertValidacao("A data e horário final deve ser maior que a data e horário inicial")
+      return false;
+    }
+
+    if (this.aula.CdSala == undefined) {
+      this.aulaService.alertValidacao("Selecione a Sala.")
+      return false;
+    }
+    return true;
   }
 }

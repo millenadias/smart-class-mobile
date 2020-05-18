@@ -10,7 +10,8 @@ export class Aula {
     public DsSemestre: number;
     public CdSala: number;
     public DsSala: string;
-    public DtAula: Date;
+    public DtAulaIni: Date;
+    public DtAulaFim: Date;
     public DsDisciplina: string;
     public CdTurma: number;
     public DsTurma: string;

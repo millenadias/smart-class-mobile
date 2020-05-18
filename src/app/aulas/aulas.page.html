@@ -31,9 +31,9 @@
       <p>Sala: {{ item.DsSala }}</p>
       <ion-button color="light">
         <ion-icon
-          name="create-outline
-        "
+          name="create-outline"
           class="iconeVisualiza"
+          (click)="editarAula(item.CdAula)"
         ></ion-icon>
         Editar aula
       </ion-button>
