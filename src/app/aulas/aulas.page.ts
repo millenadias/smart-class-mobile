@@ -19,6 +19,10 @@ export class AulasPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.listarAulas();
+  }
+
+  listarAulas() {
     this.aulaService.getAulasProfessor(this.userService.dadosUsuarioLogado.cdUsuario).then(result => {
       this.aulas = result;
       
@@ -31,11 +35,15 @@ export class AulasPage implements OnInit {
     });
   }
 
+  ionViewDidEnter(){
+    this.listarAulas();
+  }
+
   cadastrarAula() {
     this.navCtrl.navigateRoot("aula");
   }
 
-  editarAula(codAula) {
+  editarAula(codAula) {    
     this.navCtrl.navigateRoot("tabs/aula" + "?cdAula=" + codAula);
   }
 }

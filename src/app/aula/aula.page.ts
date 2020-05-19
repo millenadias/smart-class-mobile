@@ -27,6 +27,7 @@ export class AulaPage implements OnInit {
   titulo: String = "";
   btnTitulo: String = "";
   codigoDisc: number;
+
   constructor(
     private disciplinaService: DisciplinaService,
     private salaService: SalaService,
@@ -63,11 +64,12 @@ export class AulaPage implements OnInit {
 
             this.equipamentoService.getEquipamentos(this.aula.CdSala).then((result) => {
               this.equipamentos = result;
+              this.aulaService.carregarPreferencias(this.aula.CdAula).then((data: Array<number>) => {
+                this.carregarPreferencias(data);
+              })
             });
 
-            this.aulaService.carregarPreferencias(this.aula.CdAula).then((data: Array<number>) => {
-              this.carregarPreferencias(data);
-            })
+            
           }
   
         })
@@ -80,6 +82,8 @@ export class AulaPage implements OnInit {
   }
 
   carregarPreferencias(preferencias: Array<number>) {
+    console.log(preferencias);
+    
     preferencias.forEach(item => {
       this.equipamentos.filter(x => x.CdEquipamento == item).forEach(equip => {
         equip.marcado = true;
@@ -94,7 +98,11 @@ export class AulaPage implements OnInit {
 
   submit(value) {
     if (this.validarCampos() == true) {
-      this.aulaService.validarAulaPermitida(this.aula.CdSala, this.aula.DtAulaIni, this.aula.DtAulaFim).then(data => {
+
+      let codAula = 0;
+      if (this.aula.CdAula != undefined && this.aula.CdAula > 0)
+        codAula = this.aula.CdAula;
+      this.aulaService.validarAulaPermitida(this.aula.CdSala, this.aula.DtAulaIni, this.aula.DtAulaFim, codAula).then(data => {
         if (data == true) {
           this.aula.CdProfessor = this.usuarioService.dadosUsuarioLogado.cdUsuario;
           let equipamentosMarcados: Array<number> = [];
