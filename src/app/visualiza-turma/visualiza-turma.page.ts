@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TurmaService } from '../service/turma.service';
+import { Turma } from '../model/turma';
 
 @Component({
   selector: 'app-visualiza-turma',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisualizaTurmaPage implements OnInit {
 
-  constructor() { }
+  turmas: Turma[] = [];
+  constructor(private turmaService: TurmaService) { }
 
   ngOnInit() {
+    this.turmaService.getTurmas().then(result=>{
+      this.turmas = result;
+  })
   }
 
 }
