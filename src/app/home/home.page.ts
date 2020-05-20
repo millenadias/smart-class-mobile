@@ -22,6 +22,21 @@ export class HomePage {
       this.nomeUsuario = nome[0];
     }
 
+    this.listarAulas();
+    
+  }
+
+  editarAula(codAula) {
+    this.aulaService.codigoAula.next(codAula);
+    this.navCtrl.navigateRoot("tabs/aula");
+  }
+
+  
+  ionViewDidEnter(){
+    this.listarAulas();
+  }
+
+  listarAulas() {
     this.aulaService.getAulasDiaProfessor(this.userService.dadosUsuarioLogado.cdUsuario).then(result => {
       this.aulas = result;
       
@@ -32,9 +47,5 @@ export class HomePage {
         item.DtAulaIni.getHours() + ":" + item.DtAulaIni.getMinutes()
       })
     });
-  }
-
-  editarAula(codAula) {
-    this.navCtrl.navigateRoot("tabs/aula" + "?cdAula=" + codAula);
   }
 }

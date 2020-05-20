@@ -3,6 +3,7 @@ import { Aula } from "../model/aula";
 import { AulaService } from "../service/aula.service";
 import { NavController } from "@ionic/angular";
 import { UsuarioService } from "../service/usuario.service";
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: "app-aulas",
@@ -19,6 +20,10 @@ export class AulasPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.listarAulas();
+  }
+
+  listarAulas() {
     this.aulaService.getAulasProfessor(this.userService.dadosUsuarioLogado.cdUsuario).then(result => {
       this.aulas = result;
       
@@ -31,11 +36,17 @@ export class AulasPage implements OnInit {
     });
   }
 
+  ionViewDidEnter(){
+    this.listarAulas();
+  }
+
   cadastrarAula() {
     this.navCtrl.navigateRoot("aula");
   }
 
-  editarAula(codAula) {
-    this.navCtrl.navigateRoot("tabs/aula" + "?cdAula=" + codAula);
+  editarAula(codAula) { 
+      
+    this.aulaService.codigoAula.next(codAula);
+    this.navCtrl.navigateRoot("tabs/aula");
   }
 }

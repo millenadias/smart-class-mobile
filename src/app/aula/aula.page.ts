@@ -8,16 +8,17 @@ import { EquipamentoService } from "../service/equipamento.service";
 import { Aula } from "../model/aula";
 import { UsuarioService } from "../service/usuario.service";
 import { AulaService } from "../service/aula.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Turma } from "../model/turma";
 import { TurmaService } from "../service/turma.service";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-aula",
   templateUrl: "./aula.page.html",
   styleUrls: ["./aula.page.scss"],
 })
-export class AulaPage implements OnInit {
+export class AulaPage {
   disciplinas: Disciplina[] = [];
   salas: Sala[] = [];
   equipamentos: Equipamento[] = [];
@@ -27,6 +28,7 @@ export class AulaPage implements OnInit {
   titulo: String = "";
   btnTitulo: String = "";
   codigoDisc: number;
+
   constructor(
     private disciplinaService: DisciplinaService,
     private salaService: SalaService,
@@ -34,10 +36,11 @@ export class AulaPage implements OnInit {
     private usuarioService: UsuarioService,
     private aulaService: AulaService,
     private route: ActivatedRoute,
-    private turmaService: TurmaService
+    private turmaService: TurmaService,
+    private router: Router
   ) { }
 
-  ngOnInit() {
+  ionViewDidEnter() {
 
     this.disciplinaService.getDisciplinas().then((result) => {
       this.disciplinas = result;
@@ -52,34 +55,34 @@ export class AulaPage implements OnInit {
     });
 
     this.aula.CdProfessor = this.usuarioService.dadosUsuarioLogado.cdUsuario;
-
-    this.route.queryParams.subscribe((parametros) => {
-      if (parametros["cdAula"]) {
-        this.titulo = "Editar Aula";
-        this.btnTitulo = "Editar";
-        this.aulaService.getAula(parametros["cdAula"]).then(data => {
-          if (data != undefined) {
-            this.aula = data;
-
-            this.equipamentoService.getEquipamentos(this.aula.CdSala).then((result) => {
-              this.equipamentos = result;
-            });
-
+    console.log(this.aulaService.codigoAula.getValue())
+    if (this.aulaService.codigoAula.getValue() > 0) {
+      this.titulo = "Editar Aula";
+      this.btnTitulo = "Editar";
+      
+      this.aulaService.getAula(this.aulaService.codigoAula.getValue()).then(data => {
+        if (data != undefined) {
+          this.aula = data;
+          console.log('codiogo da sala', this.aula);
+          
+          this.equipamentoService.getEquipamentos(this.aula.CdSala).then((result) => {
+            this.equipamentos = result;
             this.aulaService.carregarPreferencias(this.aula.CdAula).then((data: Array<number>) => {
               this.carregarPreferencias(data);
             })
-          }
-  
-        })
-      } else {
-        this.titulo = "Cadastrar Aula";
-        this.btnTitulo = "Cadastrar";
-      }
-    });
-    
+          });
+        }
+      })
+    } else {
+      this.titulo = "Cadastrar Aula";
+      this.btnTitulo = "Cadastrar";
+    }
   }
 
+
   carregarPreferencias(preferencias: Array<number>) {
+    console.log(preferencias);
+
     preferencias.forEach(item => {
       this.equipamentos.filter(x => x.CdEquipamento == item).forEach(equip => {
         equip.marcado = true;
@@ -90,11 +93,16 @@ export class AulaPage implements OnInit {
   ionViewDidLeave() {
     this.aula = new Aula();
     this.equipamentos = [];
+    this.aulaService.codigoAula.next(0);
   }
 
   submit(value) {
     if (this.validarCampos() == true) {
-      this.aulaService.validarAulaPermitida(this.aula.CdSala, this.aula.DtAulaIni, this.aula.DtAulaFim).then(data => {
+
+      let codAula = 0;
+      if (this.aula.CdAula != undefined && this.aula.CdAula > 0)
+        codAula = this.aula.CdAula;
+      this.aulaService.validarAulaPermitida(this.aula.CdSala, this.aula.DtAulaIni, this.aula.DtAulaFim, codAula).then(data => {
         if (data == true) {
           this.aula.CdProfessor = this.usuarioService.dadosUsuarioLogado.cdUsuario;
           let equipamentosMarcados: Array<number> = [];
@@ -125,8 +133,8 @@ export class AulaPage implements OnInit {
   }
 
   validarCampos(): boolean {
-    
-    if (this.aula.CdDisciplina == undefined) {      
+
+    if (this.aula.CdDisciplina == undefined) {
       this.aulaService.alertValidacao("Selecione a disciplina.");
       return false;
     }

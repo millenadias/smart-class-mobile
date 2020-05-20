@@ -49,37 +49,7 @@ const routes: Routes = [
       import("./cadastro-usuario/cadastro-usuario.module").then(
         (m) => m.CadastroUsuarioPageModule
       ),
-  },
-  /*,
-  {
-    path: "login",
-    loadChildren: () =>
-      import("./login/login.module").then((m) => m.LoginPageModule),
-  },
-  {
-    path: "aula",
-    loadChildren: () =>
-      import("./aula/aula.module").then(
-        (m) => m.AulaPageModule
-      ),
-  },
-  {
-    path: "aulas",
-    loadChildren: () =>
-      import("./aulas/aulas.module").then((m) => m.AulasPageModule),
-  },
-  {
-    path: "cadastro-usuario",
-    loadChildren: () =>
-      import("./cadastro-usuario/cadastro-usuario.module").then(
-        (m) => m.CadastroUsuarioPageModule
-      ),
-  },
-  {
-    path: 'turma',
-    loadChildren: () => import('./turma/turma.module').then(m => m.TurmaPageModule)
-  },*/
-];
+  }];
 
 @NgModule({
   imports: [

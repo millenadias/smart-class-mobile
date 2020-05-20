@@ -15,7 +15,7 @@ export class EquipamentoService {
     return this._getEquipamentos(cdSala).toPromise()
       .then((data) => {
         let equipamentos = Array<Equipamento>();        
-        if (data) {
+        if (data) {          
           data.forEach(element => {
             let equipamento = new Equipamento();
             Object.assign(equipamento, element);

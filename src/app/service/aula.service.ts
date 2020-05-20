@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, BehaviorSubject } from 'rxjs';
 import { Usuario } from '../model/usuario';
 import { Aula } from '../model/aula';
 import { AlertController, NavController } from '@ionic/angular';
@@ -12,8 +12,12 @@ import { Equipamento } from '../model/equipamento';
 })
 export class AulaService {
 
+  public codigoAula: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+
   private urlApi: string = "https://localhost:44354/aula/ListarAulasProfessor";
   constructor(private http: HttpClient, public alertController: AlertController, private navCtrl: NavController) { }
+
+  
 
   public getAulasProfessor(cdProfessor: number): Promise<any> {
     return this._getAulasProfessor(cdProfessor).toPromise()
@@ -70,11 +74,8 @@ export class AulaService {
   public cadastrarAula(aula: Aula, equipamentos: Array<number>) {
 
     return this._cadastrarAula(aula).toPromise()
-      .then((data: any) => {
-        console.log('codigo da aula', data);
-        
+      .then((data: any) => {        
         if (data != '0') {
-
           this._cadastrarPreferencia(data, equipamentos).toPromise().then(result => {
             this.presentAlert(true);
           })
@@ -92,8 +93,10 @@ export class AulaService {
     return this._alterarAula(aula).toPromise()
       .then((data: any) => {
         if (data == 'A aula foi alterada!') {
+          this._cadastrarPreferencia(aula.CdAula, equipamentos).toPromise().then(result => {
             this.alertValidacao("Aula alterada com sucesso!.");
             this.navCtrl.navigateRoot('tabs/aulas')
+          });
         }
         else
           this.alertValidacao("Erro ao cadastrar aula, entre em contato com um administrador!");
@@ -102,7 +105,9 @@ export class AulaService {
   }
 
   private _alterarAula(aula: Aula) {
-    return this.http.post(`https://localhost:44354/aula/alterarAula`, aula
+    console.log("entrou no alterar");
+    
+    return this.http.put(`https://localhost:44354/aula/alterarAula`, aula
     ).pipe(catchError(e => of(e)));
   }
 
@@ -152,27 +157,26 @@ export class AulaService {
 
   private _cadastrarPreferencia(cdAula: number, equipamentos: Array<number>) {
 
-    var body = {
-      "CdAula": cdAula,
-      "equipamentos": equipamentos
-    }
-    return this.http.post(`https://localhost:44354/aula/cadastrarPreferenciasAula`, { cdAula, equipamentos}
+    return this.http.post(`https://localhost:44354/aula/cadastrarPreferenciasAula/${cdAula}`, equipamentos
     ).pipe(catchError(e => of(e)));
+
+    
   }
 
-  private _validarAulaPermitida(cdSala: number, dtIni: Date, dtFim: Date) {
+  private _validarAulaPermitida(cdSala: number, dtIni: Date, dtFim: Date, cdAula: number) {
     return this.http.get(`https://localhost:44354/aula/ValidarAulaPermitida`,
     { 
       params: {
         "cdSala": cdSala.toString(),
         "dtIni": dtIni.toString(),
-        "dtFim": dtFim.toString()
+        "dtFim": dtFim.toString(),
+        "cdAula": cdAula.toString()
       }
     }).pipe(catchError(e => of(e)))
   }
 
-  public validarAulaPermitida(cdSala: number, dtIni: Date, dtFim: Date) {
-    return this._validarAulaPermitida(cdSala, dtIni, dtFim).toPromise()
+  public validarAulaPermitida(cdSala: number, dtIni: Date, dtFim: Date, cdAula: number) {
+    return this._validarAulaPermitida(cdSala, dtIni, dtFim, cdAula).toPromise()
       .then((data) => {
         return data;
       })

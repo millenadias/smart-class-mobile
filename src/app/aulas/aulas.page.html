@@ -29,11 +29,11 @@
       <h4>Disciplina: {{ item.DsDisciplina }}</h4>
       <p>Turma: MOAI2324</p>
       <p>Sala: {{ item.DsSala }}</p>
-      <ion-button color="light">
+      <ion-button color="light" (click)="editarAula(item.CdAula)">
         <ion-icon
           name="create-outline"
           class="iconeVisualiza"
-          (click)="editarAula(item.CdAula)"
+          
         ></ion-icon>
         Editar aula
       </ion-button>
