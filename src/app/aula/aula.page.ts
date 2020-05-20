@@ -55,16 +55,13 @@ export class AulaPage {
     });
 
     this.aula.CdProfessor = this.usuarioService.dadosUsuarioLogado.cdUsuario;
-    console.log(this.aulaService.codigoAula.getValue())
     if (this.aulaService.codigoAula.getValue() > 0) {
       this.titulo = "Editar Aula";
       this.btnTitulo = "Editar";
       
       this.aulaService.getAula(this.aulaService.codigoAula.getValue()).then(data => {
         if (data != undefined) {
-          this.aula = data;
-          console.log('codiogo da sala', this.aula);
-          
+          this.aula = data;          
           this.equipamentoService.getEquipamentos(this.aula.CdSala).then((result) => {
             this.equipamentos = result;
             this.aulaService.carregarPreferencias(this.aula.CdAula).then((data: Array<number>) => {
@@ -123,12 +120,18 @@ export class AulaPage {
   }
 
   onChange(value) {
-    let detail = value["detail"];
-    let valor = detail["value"];
 
-    this.equipamentoService.getEquipamentos(valor).then((result) => {
-      this.equipamentos = result;
-    });
+    if (value) {
+      let detail = value["detail"];
+      let valor = detail["value"];
+  
+      if (valor) {
+        this.equipamentoService.getEquipamentos(valor).then((result) => {
+          this.equipamentos = result;
+        });
+      }
+    }
+   
   }
 
   validarCampos(): boolean {

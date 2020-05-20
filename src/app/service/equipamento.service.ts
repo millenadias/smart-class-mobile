@@ -11,9 +11,9 @@ export class EquipamentoService {
 
   constructor(private http: HttpClient) { }
 
-  public getEquipamentos(cdSala: number): Promise<any> {
+  public getEquipamentos(cdSala: number): Promise<any> {    
     return this._getEquipamentos(cdSala).toPromise()
-      .then((data) => {
+      .then((data) => {        
         let equipamentos = Array<Equipamento>();        
         if (data) {          
           data.forEach(element => {
