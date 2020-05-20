@@ -77,13 +77,12 @@ export class AulaPage {
       this.titulo = "Cadastrar Aula";
       this.btnTitulo = "Cadastrar";
     }
+
   }
 
 
   carregarPreferencias(preferencias: Array<number>) {
-    console.log(preferencias);
-
-    preferencias.forEach(item => {
+      preferencias.forEach(item => {
       this.equipamentos.filter(x => x.CdEquipamento == item).forEach(equip => {
         equip.marcado = true;
       });

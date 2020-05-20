@@ -45,8 +45,8 @@ export class AulasPage implements OnInit {
   }
 
   editarAula(codAula) { 
-      
     this.aulaService.codigoAula.next(codAula);
     this.navCtrl.navigateRoot("tabs/aula");
   }
+
 }

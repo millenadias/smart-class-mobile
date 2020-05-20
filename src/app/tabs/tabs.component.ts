@@ -18,6 +18,4 @@ export class TabsComponent implements OnInit {
     this.userService.dadosUsuarioLogado = new Usuario();
     this.navCtrl.navigateRoot('login')
   }
-
-
 }
